@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
     "module": "ES2020",
-    "noImplicitAny": true,
+    "lib": ["ES2020"],
+    "moduleResolution": "node",
+    "noImplicitAny": false,
     "removeComments": true,
     "sourceMap": true,
     "isolatedModules": true,

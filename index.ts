@@ -1,1 +1,3 @@
-export { default } from "./components/World";
+import World from "./components/World";
+
+export { World };

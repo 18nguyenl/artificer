@@ -2,12 +2,17 @@
   "name": "@18nguyenl/artificer",
   "version": "0.0.1",
   "description": "",
-  "main": "index.js",
+  "type": "module",
+  "main": "./dist/artificer.min.js",
+  "exports": {
+    "import": "./dist/artificer.module.js",
+    "require": "./dist/artificer.min.js"
+  },
   "scripts": {
-    "build:module": "esbuild index.ts --bundle --outfile=dist/artificer.module.js",
-    "build:minified": "esbuild index.ts --bundle --minify --outfile=dist/artificer.min.js",
+    "build:module": "esbuild index.ts --bundle --format=esm --outfile=dist/artificer.module.js --target=es2020",
+    "build:minified": "esbuild index.ts --bundle --format=cjs --minify --outfile=dist/artificer.min.js --target=es2020",
     "build": "run-p build:*",
-    "dev:build": "esbuild index.ts --bundle --watch --outfile=dist/artificer.module.js",
+    "dev:build": "esbuild index.ts --bundle --format=esm --watch --outfile=dist/artificer.module.js --target=es2020",
     "dev:types": "tsc",
     "dev": "run-p dev:*"
   },

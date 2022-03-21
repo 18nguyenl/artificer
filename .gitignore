@@ -173,3 +173,5 @@ out
 # End of https://www.toptal.com/developers/gitignore/api/node,macos
 test_publish/
 artificer.code-workspace
+
+.vscode
