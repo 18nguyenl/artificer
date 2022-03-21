@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "module": "ES2020",
+    "noImplicitAny": true,
+    "removeComments": true,
+    "sourceMap": true,
+    "isolatedModules": true,
+    "noEmit": true
+  }
+}

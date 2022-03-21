@@ -4,8 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "./node_modules/.bin/esbuild main.js --bundle --minify --outfile=../public/js/main.js",
-    "dev": "./node_modules/.bin/esbuild main.js --bundle --watch --outfile=../public/js/main.js"
+    "build:module": "esbuild index.ts --bundle --outfile=dist/artificer.module.js",
+    "build:minified": "esbuild index.ts --bundle --minify --outfile=dist/artificer.min.js",
+    "build": "run-p build:*",
+    "dev:build": "esbuild index.ts --bundle --watch --outfile=dist/artificer.module.js",
+    "dev:types": "tsc",
+    "dev": "run-p dev:*"
   },
   "keywords": [],
   "author": "",
@@ -18,10 +22,12 @@
     "install": "^0.13.0",
     "marquee3000": "^1.1.1",
     "npm": "^8.5.3",
+    "npm-run-all": "^4.1.5",
     "shuffle-array": "^1.0.1",
     "three": "^0.138.3"
   },
   "devDependencies": {
-    "@theatre/studio": "^0.4.7"
+    "@theatre/studio": "^0.4.7",
+    "typescript": "^4.6.2"
   }
 }
