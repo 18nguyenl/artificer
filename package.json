@@ -2,8 +2,7 @@
   "name": "@18nguyenl/artificer",
   "version": "0.0.1",
   "description": "",
-  "type": "module",
-  "main": "dist/artificer.js",
+  "main": "dist/artificer.mjs",
   "scripts": {
     "build:minified": "tsup --minify",
     "build": "run-p build:*",
