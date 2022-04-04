@@ -1,6 +1,10 @@
-import { Mesh, BoxGeometry, SphereGeometry, MeshBasicMaterial, AmbientLight, PointLight, PerspectiveCamera, Scene, WebGLRenderer } from 'three';
+'use strict';
 
-class WorldObject extends Mesh {
+Object.defineProperty(exports, '__esModule', { value: true });
+
+var three = require('three');
+
+class WorldObject extends three.Mesh {
     constructor(name, geometry, material, motionState) {
         super(geometry, material);
         this.name = name;
@@ -55371,14 +55375,14 @@ class Creatio extends God {
     addBox(name = "box", settings) {
         const params = {};
         Object.assign(params, { width: 1, height: 1, depth: 1, widthSegments: 1, heightSegments: 1 }, settings);
-        return this.addWorldObject(name, new BoxGeometry(params.width, params.height, params.depth, params.widthSegments, params.heightSegments), params.material);
+        return this.addWorldObject(name, new three.BoxGeometry(params.width, params.height, params.depth, params.widthSegments, params.heightSegments), params.material);
     }
     addSphere(name = "sphere", settings, material) {
         const params = { material: material };
         Object.assign(params, { radius: 1, widthSegments: 10, heightSegments: 10 }, settings);
-        return this.addWorldObject(name, new SphereGeometry(params.radius, params.widthSegments, params.heightSegments), params.material);
+        return this.addWorldObject(name, new three.SphereGeometry(params.radius, params.widthSegments, params.heightSegments), params.material);
     }
-    addWorldObject(name, geometry, material = new MeshBasicMaterial({ color: this.defaultMaterialColor })) {
+    addWorldObject(name, geometry, material = new three.MeshBasicMaterial({ color: this.defaultMaterialColor })) {
         let motionState = undefined;
         if (this.world.animating && this.world.motionGod.theatre) {
             motionState = this.world.motionGod.currentMotionScene.object(name, {
@@ -55442,7 +55446,7 @@ class Lumina extends God {
         super(world, options);
     }
     addAmbientLight(color, intensity) {
-        this.world.scene.add(new AmbientLight(color, intensity));
+        this.world.scene.add(new three.AmbientLight(color, intensity));
     }
     addPointLight(options) {
         const params = {};
@@ -55459,7 +55463,7 @@ class Lumina extends God {
         }, options);
         const { color, intensity, distance, decay } = params;
         const { x, y, z } = params.position;
-        const light = new PointLight(color, intensity, distance, decay);
+        const light = new three.PointLight(color, intensity, distance, decay);
         light.position.set(x, y, z);
         this.world.scene.add(light);
     }
@@ -55474,10 +55478,10 @@ class World {
         }, options);
         this.objects = [];
         this.three = {};
-        this.camera = this.three.camera = new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        this.camera = this.three.camera = new three.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         this.camera.position.z = 10;
-        this.scene = this.three.scene = new Scene();
-        this.renderer = this.three.renderer = new WebGLRenderer({
+        this.scene = this.three.scene = new three.Scene();
+        this.renderer = this.three.renderer = new three.WebGLRenderer({
             alpha: this.alpha,
         });
         this.renderer.setSize(window.innerWidth, window.innerHeight);
@@ -55500,5 +55504,5 @@ class World {
     }
 }
 
-export { World };
-//# sourceMappingURL=artificer.mjs.map
+exports.World = World;
+//# sourceMappingURL=artificer.cjs.map

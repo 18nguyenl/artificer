@@ -1,13 +1,13 @@
 {
   "compilerOptions": {
-    "module": "ES2020",
-    "lib": ["ES2020"],
+    "module": "es6",
+    "lib": ["es6", "dom"],
+    "target": "es6",
     "moduleResolution": "node",
     "noImplicitAny": false,
     "removeComments": true,
-    "sourceMap": true,
-    "isolatedModules": true,
-    "noEmit": true
+    "noEmit": true,
+    "resolveJsonModule": true
   },
-  "include": ["src/**/*.d.ts"]
+  "include": ["./src/**/*.ts"]
 }

@@ -1,6 +1,5 @@
 import { Scene, PerspectiveCamera, WebGLRenderer, Color } from "three";
 import { God, Audion, Creatio, Lumina, Movementur } from "./God";
-
 export default class World {
   objects: any[];
   three: {
