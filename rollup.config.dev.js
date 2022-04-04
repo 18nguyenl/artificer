@@ -2,14 +2,14 @@ import json from '@rollup/plugin-json';
 import { nodeResolve as resolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
-import alias from '@rollup/plugin-alias';
 import del from 'rollup-plugin-delete';
-import path from 'path';
 // import babel from '@rollup/plugin-babel';
 
 export default {
     input: 'src/index.ts',
-    external: ["three", "anime"],
+    treeshake: false,
+    globals: p => /^three/.test(p) ? 'THREE' : null,
+    external: p => /^three/.test(p),
     output: [
         {
             file: 'dist/artificer.mjs',
@@ -28,14 +28,7 @@ export default {
             sourcemap: true,
         }
     ],
-    plugins: [del({ targets: "dist/**", runOnce: true }), alias({
-        entries: [
-            {
-                find: "three",
-                replacement: path.resolve("./node_modules/three"),
-            }
-        ]
-    }), commonjs(), resolve({
+    plugins: [del({ targets: "dist/**", runOnce: true }), commonjs(), resolve({
         // pass custom options to the resolve plugin
         browser: true,
         moduleDirectories: ['node_modules'],
