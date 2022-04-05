@@ -1,3 +1,1 @@
-import World from "./components/World";
-
-export { World };
+export { World } from "@planes/World";

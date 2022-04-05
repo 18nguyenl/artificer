@@ -7,7 +7,15 @@
     "noImplicitAny": false,
     "removeComments": true,
     "noEmit": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "paths": {
+      "@interfaces/pantheon": ["src/Interfaces/Pantheon"],
+      "@pantheon/*": ["src/components/Pantheon/*"],
+      "@interfaces/planes": ["src/Interfaces/Planes"],
+      "@planes/*": ["src/components/Planes/*"]
+    }
   },
-  "include": ["./src/**/*.ts"]
+  "exclude": ["node_modules", "tests"],
+  "include": ["src"]
 }

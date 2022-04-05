@@ -1,6 +1,10 @@
+import { ISheet } from "@theatre/core";
 import { Scene, PerspectiveCamera, WebGLRenderer, Color } from "three";
-import { God, Audion, Creatio, Lumina, Movementur } from "./God";
-export default class World {
+import { God, Audion, Creatio, Lumina, Movementur } from "@pantheon/Pantheon";
+
+// Types
+
+export class World {
   objects: any[];
   three: {
     camera?: PerspectiveCamera;
@@ -10,16 +14,19 @@ export default class World {
   camera: PerspectiveCamera;
   scene: Scene;
   renderer: WebGLRenderer;
-  alpha: number;
+  alpha: boolean;
   creationGod: God;
   lightGod: God;
-  motionGod: God;
+  motionGod: Movementur;
   musicGod: God;
   animating: boolean;
   time: number;
   colors: {
     accent: string;
   };
+  theatre: any;
+  currentMotionScene: ISheet;
+  timeRate: number;
 
   constructor(options) {
     Object.assign(

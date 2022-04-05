@@ -3,7 +3,16 @@ import { nodeResolve as resolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
 import del from 'rollup-plugin-delete';
+import alias from '@rollup/plugin-alias';
+import path from 'path';
+import * as tsconfig from './tsconfig.json';
 // import babel from '@rollup/plugin-babel';
+
+function resolveAliases() {
+    return Object.entries(
+        tsconfig.compilerOptions.paths
+    ).map(([find, [replacement]]) => ({ find, replacement }));
+}
 
 export default {
     input: 'src/index.ts',
@@ -32,5 +41,8 @@ export default {
         // pass custom options to the resolve plugin
         browser: true,
         moduleDirectories: ['node_modules'],
+    }), alias({
+        resolve: ['ts'],
+        entries: resolveAliases(),
     }), typescript(), json()],
 }
