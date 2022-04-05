@@ -38,7 +38,10 @@ export class Movementur extends God {
 
     const config = { state };
     const fourthWall = [];
-    this.theatre.project = getProject(this.theatreProjectName, config);
+    this.theatre = {
+      project: getProject(this.theatreProjectName),
+      sheets: {},
+    };
     this.theatre.sheets = {
       mainScene: this.theatre.project.sheet("Main Scene"),
     };
