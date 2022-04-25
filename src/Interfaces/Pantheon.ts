@@ -1,1 +1,1 @@
-import { World } from "@planes/World";
+import { ThreeDWorld } from "@planes/ThreeDWorld";

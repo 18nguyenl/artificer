@@ -1,13 +1,14 @@
 // Types
-import type { World } from "@planes/World";
+import { World } from "@planes/World";
 import { AmbientLight, PointLight } from "three";
 
 export class God {
   world: World;
+  name: string;
 
-  constructor(world, options) {
+  constructor(name, options) {
     Object.assign(this, {}, options);
 
-    this.world = world;
+    this.name = name;
   }
 }

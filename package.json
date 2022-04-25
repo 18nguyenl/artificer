@@ -15,7 +15,8 @@
     "build:minified": "rollup -c rollup.config.prod.js",
     "build": "run-p build:*",
     "dev:watch": "rollup -c rollup.config.dev.js --watch",
-    "dev": "run-p dev:*"
+    "dev": "run-p dev:*",
+    "test": "vitest run"
   },
   "keywords": [],
   "author": "",
@@ -27,6 +28,7 @@
   "dependencies": {
     "@theatre/core": "^0.4.7",
     "@theatre/studio": "^0.4.7",
+    "@types/three": "^0.139.0",
     "chunk": "^0.0.3",
     "marquee3000": "^1.1.1"
   },
@@ -48,9 +50,6 @@
     "rollup-plugin-delete": "^2.0.0",
     "rollup-plugin-terser": "^7.0.2",
     "typescript": "^4.6.3"
-  },
-  "directories": {
-    "test": "tests"
   },
   "repository": {
     "type": "git",

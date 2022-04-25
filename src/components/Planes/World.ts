@@ -1,81 +1,24 @@
-import { ISheet } from "@theatre/core";
-import { Scene, PerspectiveCamera, WebGLRenderer, Color } from "three";
-import { God, Audion, Creatio, Lumina, Movementur } from "@pantheon/Pantheon";
+import { God } from "@pantheon/God";
 
-// Types
+type GodsInfluence = {
+  act: (action: (god: God) => void) => void;
+  god: God;
+};
 
 export class World {
-  objects: any[];
-  three: {
-    camera?: PerspectiveCamera;
-    scene?: Scene;
-    renderer?: WebGLRenderer;
-  };
-  camera: PerspectiveCamera;
-  scene: Scene;
-  renderer: WebGLRenderer;
-  alpha: boolean;
-  creationGod: God;
-  lightGod: God;
-  motionGod: Movementur;
-  musicGod: God;
-  animating: boolean;
-  time: number;
-  colors: {
-    accent: string;
-  };
-  theatre: any;
-  currentMotionScene: ISheet;
-  timeRate: number;
-
-  constructor(options) {
-    Object.assign(
-      this,
-      {
-        animating: false,
-        timeRate: 0.001,
-        alpha: true,
-      },
-      options
-    );
-
-    this.objects = [];
-
-    this.three = {};
-    this.camera = this.three.camera = new PerspectiveCamera(
-      75,
-      window.innerWidth / window.innerHeight,
-      0.1,
-      1000
-    );
-    this.camera.position.z = 10;
-
-    this.scene = this.three.scene = new Scene();
-    // this.scene.background = new Color(this.colors.activeBackgroundColor);
-
-    this.renderer = this.three.renderer = new WebGLRenderer({
-      alpha: this.alpha,
-    });
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
-
-    window.addEventListener("resize", (e) => {
-      this.camera.aspect = window.innerWidth / window.innerHeight;
-      this.renderer.setSize(window.innerWidth, window.innerHeight);
-    });
-
-    this.creationGod = new Creatio(this, {
-      defaultMaterialColor: this.colors.accent,
-    });
-    this.lightGod = new Lumina(this, {});
-    if (this.animating) this.motionGod = new Movementur(this, {});
-    this.musicGod = new Audion(this, {});
-
-    this.time = 0;
-
-    document.body.appendChild(this.renderer.domElement);
+  pantheon: { [key: string]: GodsInfluence };
+  constructor() {
+    this.pantheon = {};
   }
 
-  setScene(worldScene) {
-    this.scene = this.three.scene = worldScene;
+  assignGod(god: God) {
+    this.pantheon[god.name] = {
+      act: (action) => {
+        god.world = this;
+
+        action(god);
+      },
+      god: god,
+    };
   }
 }
