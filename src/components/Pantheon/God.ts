@@ -11,4 +11,8 @@ export class God {
 
     this.name = name;
   }
+
+  useTool(tool: Function) {
+    return tool.bind(this)();
+  }
 }

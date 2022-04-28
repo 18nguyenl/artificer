@@ -6,6 +6,9 @@ var artificer = (function (exports, three) {
             Object.assign(this, {}, options);
             this.name = name;
         }
+        useTool(tool) {
+            return tool.bind(this)();
+        }
     }
 
     class World {
@@ -13,6 +16,7 @@ var artificer = (function (exports, three) {
             this.pantheon = {};
         }
         assignGod(god) {
+            god.world = this;
             this.pantheon[god.name] = {
                 act: (action) => {
                     god.world = this;
@@ -55834,6 +55838,7 @@ Note that it **is okay** to import '@theatre/studio' multiple times. But those i
     exports.God = God;
     exports.ThreeDWorld = ThreeDWorld;
     exports.TwoDVectorWorld = TwoDVectorWorld;
+    exports.World = World;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

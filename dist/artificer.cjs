@@ -9,6 +9,9 @@ class God {
         Object.assign(this, {}, options);
         this.name = name;
     }
+    useTool(tool) {
+        return tool.bind(this)();
+    }
 }
 
 class World {
@@ -16,6 +19,7 @@ class World {
         this.pantheon = {};
     }
     assignGod(god) {
+        god.world = this;
         this.pantheon[god.name] = {
             act: (action) => {
                 god.world = this;
@@ -55837,4 +55841,5 @@ class ThreeDWorld extends World {
 exports.God = God;
 exports.ThreeDWorld = ThreeDWorld;
 exports.TwoDVectorWorld = TwoDVectorWorld;
+exports.World = World;
 //# sourceMappingURL=artificer.cjs.map

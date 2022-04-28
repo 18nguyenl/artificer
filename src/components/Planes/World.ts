@@ -12,6 +12,7 @@ export class World {
   }
 
   assignGod(god: God) {
+    god.world = this;
     this.pantheon[god.name] = {
       act: (action) => {
         god.world = this;
